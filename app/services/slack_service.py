@@ -26,7 +26,7 @@ class SlackService:
         self.repository = repository
 
     def handle_command(self, text: str) -> dict[str, str]:
-        if text.strip().lower() == "today":
+        if text.strip().lower() in {"", "today"}:
             stats = self.repository.get_today_stats()
             message = (
                 f"Refund Summary — {stats.date} ({stats.timezone})\n"

@@ -12,7 +12,7 @@ completed refunds; it does not issue payments. Use synthetic customer data.
 
 **Working local demo; development paused at this checkpoint.** GitHub delivery,
 PostgreSQL persistence, duplicate protection, Google Sheets synchronization, and
-Slack `/refunds today` have been verified live. The automated suite has **61
+Slack `/refunds today` have been verified live. The automated suite has **62
 passing tests**. Deployment and remaining features are listed below.
 
 ## Architecture
@@ -167,6 +167,8 @@ HTTP. Export the Signing Secret before starting FastAPI, then run:
 The response is visible only to the invoking user. No bot token is required in
 Python for this direct slash-command response.
 
+`/refunds` without an argument also returns today's summary.
+
 ## API endpoints
 
 | Method | Path | Behavior |
@@ -188,7 +190,7 @@ Money is returned as JSON strings to preserve precision. The handling status
 python -m unittest discover -v
 ```
 
-The 61 tests cover schemas, extraction, signatures, persistence result handling,
+The 62 tests cover schemas, extraction, signatures, persistence result handling,
 pagination, Toronto date and daylight-saving boundaries, report batches, Slack
 commands, and error responses. External systems are mocked; these are not
 automated live PostgreSQL, Google, or Slack integration tests.

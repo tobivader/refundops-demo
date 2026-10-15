@@ -37,9 +37,10 @@ necessary if its parent process did not previously have this environment setting
 6. Keep ngrok running. In your Slack channel, enter `/refunds today`.
 
 The response includes Toronto's date, refund count, and amount. Values come from
-PostgreSQL, not Sheets. The total assumes one demo currency and has no currency
-symbol because no currency is stored in our records. Blank text, `help`, and
-unsupported arguments return usage guidance.
+PostgreSQL, not Sheets. `/refunds` with no argument also defaults to today's
+summary. The total assumes one demo currency and has no currency
+symbol because no currency is stored in our records. `help` and unsupported
+arguments return usage guidance.
 
 ## Response and error behavior
 
@@ -56,7 +57,7 @@ not a bot token. Invalid forms or wrong command names return 422. If Slack
 cannot connect, check ngrok, the route suffix, and FastAPI. Update Slack's Request
 URL if the tunnel URL changes.
 
-The endpoint and 61-test suite are verified locally with mocked database reads.
+The endpoint and 62-test suite are verified locally with mocked database reads.
 Actual Slack installation and live command response remain to be verified.
 Only `today` is implemented; `count`, `total`, and analyst-specific commands
 remain future work. Workspace-specific authorization beyond installation is not

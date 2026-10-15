@@ -43,7 +43,7 @@ signal.
 | Slack /refunds today | Implemented; live workspace setup and verification pending |
 | CSV import, deployment | Not implemented |
 
-The current automated suite has 61 tests. Database-facing tests use mocks:
+The current automated suite has 62 tests. Database-facing tests use mocks:
 they verify Python orchestration and responses, not a real PostgreSQL server.
 Manual checks supplied the live evidence above. A local ngrok tunnel is not
 a deployed service.

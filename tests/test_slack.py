@@ -55,6 +55,16 @@ class CommandTests(unittest.TestCase):
         self.assertIn("Usage", response["text"])
         repository.get_today_stats.assert_not_called()
 
+    def test_empty_command_defaults_to_today(self):
+        repository = Mock()
+        repository.get_today_stats.return_value = TodayStats(
+            date="2026-10-15", refund_count=1, total_refunded="29.99",
+        )
+        response = SlackService(repository).handle_command("   ")
+        self.assertIn("Refunds: 1", response["text"])
+        self.assertIn("29.99", response["text"])
+        repository.get_today_stats.assert_called_once()
+
 
 class SlackApiTests(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
